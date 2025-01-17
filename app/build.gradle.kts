@@ -19,7 +19,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             resValue("string", "app_name", "UserApp")
@@ -53,6 +52,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    testOptions {
+        packaging {
+            resources.excludes.add("META-INF/*")
+        }
     }
     buildFeatures {
         compose = true
@@ -95,6 +100,7 @@ dependencies {
 
 
     testImplementation(libs.junit)
+    androidTestImplementation (libs.mockk.mockk.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
